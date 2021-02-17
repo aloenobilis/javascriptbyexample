@@ -193,5 +193,133 @@ for(k in client) {
     document.write(client[k], '<br/>');
 }
 
+// +--Arrays--+
+// i. structure and methods
+// ii. sort
 
+// i
+var pancakes = ['milk', 'egg', 1, 'flour', 2.09];
+document.write('First index: ', pancakes[0], '<br/>'); // milk
+pancakes[5] = 'hot pan';
+pancakes.splice(2, 1, 'sugar', 'cinnemon'); // remove 1 from index 2, insert at index 2
+pancakes.splice(4,1); // remove 1 from index 4 
+document.write('Array: ', pancakes.valueOf(), '<br/>');
+document.write('Array: ', pancakes.join(', '), '<br/>');
+
+delete pancakes[3];
+pancakes.sort();
+
+pancakes.pop(); // remove last item
+pancakes.push('Avocado', 'Salmon');
+
+pancakes.shift(); // remove first item
+pancakes.unshift('white wine', 'water');
+
+document.write('Array: ', pancakes.toString(), '<br/>');
+
+var seasonings = ['salt', 'pepper', 'chilli'];
+var newArray = pancakes.concat(seasonings);  // join
+for(var i=0; i<newArray.length; i++) {
+    document.write(newArray[i], '<br/>');
+}
+
+// ii
+var numbers = [43,91,2,213,31,1,19];
+numbers.sort(function(x,y) { return x - y}); // ascending
+document.write('Numerical Sort: ', numbers.toString(), '<br/>')
+numbers.sort(function(x,y) { return y - x}); // descending
+document.write('Numerical Sort: ', numbers.toString(), '<br/>')
+
+// +--Functions--+
+// i. definition
+// ii. function scope
+
+// check whether a value is in an array
+function inArray(array, value) {
+    for(var i=0; i<array.length; i++) {
+        if(array[i] === value) {
+            return true;
+        }
+    }
+    return false;
+}
+
+var vals = ['dog', 1000, 'cat', 3.14, 0];
+document.write('In array: ', inArray(vals, 33), '<br/>');
+
+// ii
+function divide(num1, num2) {
+    var num = num1 / num2;
+    return num;
+}
+document.write('num: ', num, '<br/>'); // error: num is not defined
+
+// +--Pass Function as Parameter--+
+// i. function as parameter
+// ii. function expressions
+
+// i
+function square(num) {
+    return num * num;
+}
+
+function times2(num) {
+    return num * 2;
+}
+
+function multiply(func, num) {
+    return func(num);
+}
+
+document.write('Multiply: ', multiply(square, 3), '<br/>');
+document.write('Multiply: ', multiply(times2, 3), '<br/>');
+
+// ii
+var cubed = function(num) {
+    return num*num*num;
+}
+var squared = function(num) {
+    return num*num;
+}
+
+var funcArray = [squared, cubed];
+for(var i=0; i<funcArray.length;i++) {
+    document.write('Expression: ', funcArray[i](3), '<br/>');
+}
+
+document.write('Multiply: ', multiply(squared, 3), '<br/>');
+document.write('Multiply: ', multiply(cubed, 3), '<br/>');
+
+// +--Receive Variable Number of Arguments--+
+function getSum() {
+    var sum = 0;
+    for (var i = 0; i < arguments.length; i++) {
+        sum += arguments[i];
+    }
+    return sum; 
+}
+
+document.write('Sum: ', getSum(2,3,4,10), '<br/>'); // 19
+
+// +--Return Variable Number of Arguments--+
+function square(array) {
+    var newArray=[];
+    for (var i = 0; i < array.length; i++) {
+        newArray.push(array[i] * array[i]);
+    }
+    return newArray;
+}
+
+document.write('Array Squared: ', square([1,2,3,4,5,6]).toString(), '<br/>');  // 1,4,9,16,25,36
+
+// +--Recursive Functions--+
+function factorial(num) {
+    if(num <= 1) {
+        return 1;
+    } else {
+        return num * factorial(num - 1);
+    }
+}
+
+document.write('Factorial of 4 = ', factorial(4), '<br/>');
 

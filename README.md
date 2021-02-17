@@ -12,19 +12,19 @@ to, taken away from and tested over time as the ecosystem and language specifica
 4. [Random Numbers](#Random)
 5. [Strings](#Strings)
 6. [Styling Strings](#Styling)
-7. [If](#If)
-8. [Switch](#Switch)
-9. [Ternary Operator](#Ternary)
-10. [While Loop](#While)
-11. [Do While Loop](#DoWhile)
-12. [For Loop](#For)
-13. [For In Loop](#ForIn)
+7. [Conditional: If](#If)
+8. [Conditional: Switch](#Switch)
+9. [Conditional: Ternary Operator](#Ternary)
+10. [Loop: While Loop](#While)
+11. [Loop: Do While Loop](#DoWhile)
+12. [Loop: For Loop](#For)
+13. [Loop: For In Loop](#ForIn)
 14. [Arrays](#Arrays)
 15. [Functions](#Functions)
-16. [Pass Function as Parameter](#PassFunction)
-17. [Receive Variable Number of Arguments](#ReceiveVariable)
-18. [Return Variable Number of Arguments](#ReturnVariable)
-19. [Recursive Functions](#Recursive)
+16. [Functions: Pass Function as Parameter](#PassFunction)
+17. [Functions: Receive Variable Number of Arguments](#ReceiveVariable)
+18. [Functions: Return Variable Number of Arguments](#ReturnVariable)
+19. [Functions: Recursive Functions](#Recursive)
 20. [Event Handling](#EventHandling)
 21. [Mouse Events](#MouseEvents)
 22. [Key Events](#KeyEvents)
@@ -227,7 +227,7 @@ i. String Methods
 ```
 
 <a name="If"></a>
-### If
+### Conditional: If
 Conditional Operators: <br/>
 - Logical Operators: && || ! <br/>
 - Relational Operators: == === !=  > < >= <= <br/>
@@ -264,7 +264,7 @@ ii. boolean logic
 ```
 
 <a name="Switch"></a>
-### Switch
+### Conditional: Switch
 ```html
 <script>
     var fileType = '.h';
@@ -288,7 +288,7 @@ ii. boolean logic
 ```
 
 <a name="Ternary"></a>
-### Ternary Operator
+### Conditional: Ternary Operator
 ```html
 <script>
     var age = 18;
@@ -299,7 +299,7 @@ ii. boolean logic
 ```
 
 <a name="While"></a>
-### While Loop
+### Loop: While Loop
 ```html
 <script>
     var i = 1;
@@ -311,7 +311,7 @@ ii. boolean logic
 ```
 
 <a name="DoWhile"></a>
-### Do While Loop
+### Loop: Do While Loop
 ```html
 <script>
     do {
@@ -324,7 +324,7 @@ ii. boolean logic
 ```
 
 <a name="For"></a>
-### For Loop
+### Loop: For Loop
 ```html
 <script>
     for (var i = 0; i <= 20; i++) {
@@ -336,7 +336,7 @@ ii. boolean logic
 ```
 
 <a name="ForIn"></a>
-### For In Loop
+### Loop: For In Loop
 ```html
 <script>
     var client = {name: 'Good Brewery', address: 'Bills Farm', invoice: true, total: '$12,000'};
@@ -346,8 +346,164 @@ ii. boolean logic
 </script>
 ```
 
-...
+<a name="Arrays"></a>
+### Arrays
+i. structure and methods <br/>
+ii. sort
 
+```html
+<script>
+    // i
+    var pancakes = ['milk', 'egg', 1, 'flour', 2.09];
+    document.write('First index: ', pancakes[0], '<br/>'); // milk
+    pancakes[5] = 'hot pan';
+    pancakes.splice(2, 1, 'sugar', 'cinnemon'); // remove 1 from index 2, insert at index 2
+    pancakes.splice(4,1); // remove 1 from index 4 
+    document.write('Array: ', pancakes.valueOf(), '<br/>');
+    document.write('Array: ', pancakes.join(', '), '<br/>');
+
+    delete pancakes[3];
+    pancakes.sort();
+
+    pancakes.pop(); // remove last item
+    pancakes.push('Avocado', 'Salmon');
+
+    pancakes.shift(); // remove first item
+    pancakes.unshift('white wine', 'water');
+
+    document.write('Array: ', pancakes.toString(), '<br/>');
+
+    var seasonings = ['salt', 'pepper', 'chilli'];
+    var newArray = pancakes.concat(seasonings);  // join
+    for(var i=0; i<newArray.length; i++) {
+        document.write(newArray[i], '<br/>');
+    }
+
+    // ii
+    var numbers = [43,91,2,213,31,1,19];
+    numbers.sort(function(x,y) { return x - y}); // ascending
+    document.write('Numerical Sort: ', numbers.toString(), '<br/>')
+    numbers.sort(function(x,y) { return y - x}); // descending
+    document.write('Numerical Sort: ', numbers.toString(), '<br/>')
+</script>
+```
+
+<a name="Functions"></a>
+### Functions
+i. definition <br/>
+ii. function scope
+
+```html
+<script>
+    // check whether a value is in an array
+    function inArray(array, value) {
+        for(var i=0; i<array.length; i++) {
+            if(array[i] === value) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    var vals = ['dog', 1000, 'cat', 3.14, 0];
+    document.write('In array: ', inArray(vals, 33), '<br/>');
+
+    // ii
+    function divide(num1, num2) {
+        var num = num1 / num2;
+        return num;
+    }
+    document.write('num: ', num, '<br/>'); // error: num is not defined
+</script>
+```
+
+<a name="PassFunction"></a>
+### Functions: Pass Function as Parameter
+i. function as parameter <br/>
+ii. function expressions
+
+```html
+<script>
+    // i
+    function square(num) {
+        return num * num;
+    }
+
+    function times2(num) {
+        return num * 2;
+    }
+
+    function multiply(func, num) {
+        return func(num);
+    }
+
+    document.write('Multiply: ', multiply(square, 3), '<br/>');
+    document.write('Multiply: ', multiply(times2, 3), '<br/>');
+
+    // ii
+    var cubed = function(num) {
+        return num*num*num;
+    }
+    var squared = function(num) {
+        return num*num;
+    }
+
+    var funcArray = [squared, cubed];
+    for(var i=0; i<funcArray.length;i++) {
+        document.write('Expression: ', funcArray[i](3), '<br/>');
+    }
+
+    document.write('Multiply: ', multiply(squared, 3), '<br/>');
+    document.write('Multiply: ', multiply(cubed, 3), '<br/>');
+</script>
+```
+
+<a name="ReceiveVariable"></a>
+### Functions: Receive Variable Number of Arguments
+```html
+<script>
+    function getSum() {
+        var sum = 0;
+        for (var i = 0; i < arguments.length; i++) {
+            sum += arguments[i];
+        }
+        return sum; 
+    }
+
+    document.write('Sum: ', getSum(2,3,4,10), '<br/>'); // 19
+</script>
+```
+
+<a name="ReturnVariable"></a>
+### Functions: Return Variable Number of Arguments
+```html
+<script>
+    function square(array) {
+        var newArray=[];
+        for (var i = 0; i < array.length; i++) {
+            newArray.push(array[i] * array[i]);
+        }
+        return newArray;
+    }
+
+    document.write('Array Squared: ', square([1,2,3,4,5,6]).toString(), '<br/>');  // 1,4,9,16,25,36
+</script>
+```
+<a name="Recursive"></a>
+### Functions: Recursive Functions
+```html
+<script>
+    function factorial(num) {
+        if(num <= 1) {
+            return 1;
+        } else {
+            return num * factorial(num - 1);
+        }
+    }
+
+    document.write('Factorial of 4 = ', factorial(4), '<br/>');
+</script>
+```
 
 <br/>
 <br/>
