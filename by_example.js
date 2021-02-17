@@ -141,3 +141,57 @@ document.write('true || false = ', true || false, '<br/>'); // true
 document.write('!true = ', !true, '<br/>'); // false
 document.write('\"5\" == 5 = ', "5" == 5, '<br/>'); // true
 document.write('\"5\" === 5 = ', "5" === 5, '<br/>'); // false
+
+// +--Switch--+
+var fileType = '.h';
+switch(fileType) {
+    case '.cc':
+    case '.cpp':
+        document.write(fileType + 'Filetype C++');
+        break;
+    case '.py':
+        document.write('Filetype: Python');
+        break;
+    case '.h':
+    case '.header':
+    case '.hippie':
+        document.write('Filetype: Header');
+        break;
+    default:
+        document.write('Filetype: Unknown');
+}
+
+// +--Ternary--+
+var age = 18;
+
+var canDrive = (age >= 18) ? true : false;
+document.write('You ', canDrive == true ? 'can' : 'cannot', ' drive.');  // You can drive. 
+
+// +--While Loop--+ 
+var i = 1;
+while(i <= 10) {
+    document.write(i, '<br/>');
+    i++;
+}
+
+// +--Do While Loop--+
+do {
+    var guess = prompt('Guess a number between 1 and 10: ');
+} while(guess != 6);
+alert('You guessed 6 correctly!');
+
+// +--For Loop--+
+for (var i = 0; i <= 20; i++) {
+    if((i % 2) === 0) continue;
+    if(i === 17) break;
+    document.write(i, '<br/>');
+}
+
+// +--For In Loop--+
+var client = {name: 'Good Brewery', address: 'Bills Farm', invoice: true, total: '$12,000'};
+for(k in client) {
+    document.write(client[k], '<br/>');
+}
+
+
+

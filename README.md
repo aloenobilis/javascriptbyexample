@@ -15,10 +15,10 @@ to, taken away from and tested over time as the ecosystem and language specifica
 7. [If](#If)
 8. [Switch](#Switch)
 9. [Ternary Operator](#Ternary)
-10. [While](#While)
-11. [Do While](#DoWhile)
-12. [For](#For)
-13. [For In](#ForIn)
+10. [While Loop](#While)
+11. [Do While Loop](#DoWhile)
+12. [For Loop](#For)
+13. [For In Loop](#ForIn)
 14. [Arrays](#Arrays)
 15. [Functions](#Functions)
 16. [Pass Function as Parameter](#PassFunction)
@@ -212,7 +212,6 @@ i. String Methods
 ### Styling Strings
 ```html
 <script>
-    // +--Styling Strings--+
     var strToStyle = 'Lollapalooza';
     document.write('Big: ', strToStyle.big() + '<br/>');
     document.write('Bold: ', strToStyle.bold() + '<br/>');
@@ -263,6 +262,92 @@ ii. boolean logic
     document.write('\"5\" === 5 = ', "5" === 5, '<br/>'); // false
 </script>
 ```
+
+<a name="Switch"></a>
+### Switch
+```html
+<script>
+    var fileType = '.h';
+    switch(fileType) {
+        case '.cc':
+        case '.cpp':
+            document.write(fileType + 'Filetype C++');
+            break;
+        case '.py':
+            document.write('Filetype: Python');
+            break;
+        case '.h':
+        case '.header':
+        case '.hippie':
+            document.write('Filetype: Header');
+            break;
+        default:
+            document.write('Filetype: Unknown');
+    }
+</script>
+```
+
+<a name="Ternary"></a>
+### Ternary Operator
+```html
+<script>
+    var age = 18;
+
+    var canDrive = (age >= 18) ? true : false;
+    document.write('You ', canDrive == true ? 'can' : 'cannot', ' drive.');  // You can drive. 
+</script>
+```
+
+<a name="While"></a>
+### While Loop
+```html
+<script>
+    var i = 1;
+    while(i <= 10) {
+        document.write(i, '<br/>');
+        i++;
+    }
+</script>
+```
+
+<a name="DoWhile"></a>
+### Do While Loop
+```html
+<script>
+    do {
+        var guess = prompt('Guess a number between 1 and 10: ');
+    } while(guess != 6);
+
+    alert('You guessed 6 correctly!');
+
+</script>
+```
+
+<a name="For"></a>
+### For Loop
+```html
+<script>
+    for (var i = 0; i <= 20; i++) {
+        if((i % 2) === 0) continue;
+        if(i === 17) break;
+        document.write(i, '<br/>');
+    }
+</script>
+```
+
+<a name="ForIn"></a>
+### For In Loop
+```html
+<script>
+    var client = {name: 'Good Brewery', address: 'Bills Farm', invoice: true, total: '$12,000'};
+    for(k in client) {
+        document.write(client[k], '<br/>');
+    }
+</script>
+```
+
+...
+
 
 <br/>
 <br/>
