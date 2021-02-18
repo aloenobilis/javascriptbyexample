@@ -1,4 +1,6 @@
-# Javascript By Example
+
+# Javascipt By Example 
+<img alt="js logo" src="https://raw.githubusercontent.com/voodootikigod/logo.js/master/js.png" height="80px">
 
 ## Overview
 
@@ -15,10 +17,10 @@ to, taken away from and tested over time as the ecosystem and language specifica
 7. [Conditional: If](#If)
 8. [Conditional: Switch](#Switch)
 9. [Conditional: Ternary Operator](#Ternary)
-10. [Loop: While Loop](#While)
-11. [Loop: Do While Loop](#DoWhile)
-12. [Loop: For Loop](#For)
-13. [Loop: For In Loop](#ForIn)
+10. [Loop: While](#While)
+11. [Loop: Do While](#DoWhile)
+12. [Loop: For](#For)
+13. [Loop: For In](#ForIn)
 14. [Arrays](#Arrays)
 15. [Functions](#Functions)
 16. [Functions: Pass Function as Parameter](#PassFunction)
@@ -299,7 +301,7 @@ ii. boolean logic
 ```
 
 <a name="While"></a>
-### Loop: While Loop
+### Loop: While
 ```html
 <script>
     var i = 1;
@@ -311,7 +313,7 @@ ii. boolean logic
 ```
 
 <a name="DoWhile"></a>
-### Loop: Do While Loop
+### Loop: Do While
 ```html
 <script>
     do {
@@ -324,7 +326,7 @@ ii. boolean logic
 ```
 
 <a name="For"></a>
-### Loop: For Loop
+### Loop: For
 ```html
 <script>
     for (var i = 0; i <= 20; i++) {
@@ -336,7 +338,7 @@ ii. boolean logic
 ```
 
 <a name="ForIn"></a>
-### Loop: For In Loop
+### Loop: For In
 ```html
 <script>
     var client = {name: 'Good Brewery', address: 'Bills Farm', invoice: true, total: '$12,000'};
@@ -502,6 +504,162 @@ ii. function expressions
     }
 
     document.write('Factorial of 4 = ', factorial(4), '<br/>');
+</script>
+```
+<a name="EventHandling"></a>
+### Event Handling
+```html
+<script>
+    function greet(message) {
+        alert(message);
+    }
+</script>
+<a href="Javascript:void(0)" onClick="alert('Hello')">Say Hello</a> <br/>
+<a href="Javascript:void(0)" onClick="greet('Howdy partner!')">Greet</a> <br/>
+```
+
+<a name="MouseEvents"></a>
+### Mouse Events
+
+```html
+<a href="Javascript:void(0)"
+    onmouseover="this.style.color ='red';"
+    onmouseout="this.style.color = 'green';"
+    ondblclick="this.text='You double clicked'"
+    onmousedown="this.text='Hold me down!'"
+    onmouseup="this.text='Dont go'">
+    Make me red
+</a> 
+<br/>
+<input type="text" id="txtInpt" onChange="var data = document.getElementById('txtInpt').value; alert(data);" />
+```
+
+<a name="KeyEvents"></a>
+### Key Events
+```html
+<form action="#" id="exForm">
+   <input id="exInput" type="text">
+
+   <p id="keyData">Key Data Here</p>
+   <input type="submit" value="Submit">
+   <input type="reset" value="Reset"> 
+</form> 
+<br/>
+    <script type="text/javascript">
+    function getChar(event) {
+        if(event.which == null) {
+            return String.fromCharCode(event.keyCode);
+        } else if (event.which != 0 && event.charCode != 0) {
+            return String.fromCharCode(event.which);
+        } else {
+            return null;
+        }
+    }
+
+    document.getElementById('exInput').onkeypress = 
+        function(event) {
+            var char = getChar(event || window.event);
+            if(!char) return false;
+
+            document.getElementById('keyData').innerHTML = char + ' key was pressed';
+            return true;
+        }
+</script>
+```
+
+<a name="ChangeTag"></a>
+### Change Tag Value
+```html
+<input id="exInput2" type="text">
+<p id="keyData2">Focus on input</p>
+<script>
+    document.getElementById('exInput2').onfocus = 
+    function(event) {
+        document.getElementById('keyData2').innerHTML = 'Input Focused';
+    }
+
+    document.getElementById('exInput2').onselect = 
+    function(event) {
+        document.getElementById('keyData2').innerHTML = 'Text Selected';
+    }
+</script>
+```
+
+<a name="ChangeClass"></a>
+### Change Class
+Note: CSS, HTML and JS are used
+```html
+<style type="text/css">
+    .hidden {display: none;}
+    .show {display: inline !important;}
+</style>
+
+<img height="180px" src="https://raw.githubusercontent.com/voodootikigod/logo.js/master/js.png" id="logo"> <br/>
+<button id="logoButton">Get Logo</button>
+
+<script type="text/javascript">
+    document.getElementById('logoButton').onclick = 
+        function(event) {
+            document.getElementById('logo').className = "show";
+        }
+
+    document.getElementById('logo').onclick = 
+        function(event) {
+            document.getElementById('logo').className = "hidden";
+        }
+
+    document.getElementById('logo').onmouseover = 
+        function(event) {
+            document.getElementById('logo').src = 
+                "https://raw.githubusercontent.com/voodootikigod/logo.js/master/jsconfasia/jsconfasia.png";
+        }
+
+    document.getElementById('logo').onmouseout = 
+        function(event) {
+            document.getElementById('logo').src = 
+                "https://raw.githubusercontent.com/voodootikigod/logo.js/master/js.png";
+        }
+</script>    
+```
+
+<a name="ChangeInput"></a>
+### Change Input Element
+```html
+<input id="mouseInput" type="text" size="30"> <br/>
+<script type="text/javascript">
+    document.getElementById('mouseInput').onmouseover = 
+        function(event) {
+            document.getElementById('mouseInput').value = "Mouse over"; 
+        }
+
+    document.getElementById('mouseInput').onmouseout = 
+        function(event) {
+            document.getElementById('mouseInput').value = "Mouse out"; 
+        }
+</script>
+```
+
+<a name="MouseXY"></a>
+### Mouse X / Y Coordinates
+```html
+Mouse X: <input type="text" id="mouseX"><br/>
+Mouse Y: <input type="text" id="mouseY"><br/> 
+
+<script type="text/javascript">
+    document.body.onmousemove = function(e) {
+        e = e || window.event;
+
+        var pageX = e.pageX;
+        var pageY = e.pageY;
+
+        if(pageX === undefined || pageY === undefined) {
+            pageX = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+            pageY = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        }
+
+        document.getElementById('mouseX').value = pageX;
+        document.getElementById('mouseY').value = pageY;
+    };
 </script>
 ```
 

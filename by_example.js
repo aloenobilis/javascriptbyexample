@@ -323,3 +323,10 @@ function factorial(num) {
 
 document.write('Factorial of 4 = ', factorial(4), '<br/>');
 
+// +--Event Handling--+ (see readme, example contains html)
+// +--Mouse Events--+ (see readme, 〃)
+// +--Change Tag Value--+ (see readme, 〃)
+// +--Change Class--+ (see readme, 〃)
+// +--Change Input Element--+ (see readme, 〃)
+// +--Mouse X / Y Coordinates--+ (see readme, 〃)
+
