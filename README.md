@@ -780,7 +780,6 @@ Mouse Y: <input type="text" id="mouseY"><br/>
 ```html
 <img height="180px" alt="js logo" src="https://raw.githubusercontent.com/voodootikigod/logo.js/master/js.png" id="logo"> <br/>
 <script>
-    // +--Setting Attributes--+
     var logo = document.getElementById('logo');
     document.write('Logo alt value : ', logo.getAttribute('alt'), '<br/>');
 
@@ -898,7 +897,8 @@ Note: This is just example validation
 <a name="ExceptionHandling"></a>
 ### Exception Handling
 i. creating a RegEx object <br/>
-ii. validating string input
+ii. validating string input <br/>
+iii. try catch
 
 ```html
 Enter your name: 
@@ -910,10 +910,29 @@ Enter your name:
     // const re = /^[A-Za-z\.\' \-]{1,15}\s?[A-Za-z\.\' \-]{1,15}\s?[A-Za-z\.\' \-]{1,15}/;
     const reg = RegExp('^[A-Za-z\.\' \-]{1,15}\s?[A-Za-z\.\' \-]{1,15}\s?[A-Za-z\.\' \-]{1,15}');
 
+    // ii
     function validateInput(input, output) {
         if(reg.test(input.value) == false) {
             output.innerHTML = 'Please enter a valid name';
         }
+    }
+
+    // iii
+    try {
+        doesnotexist();
+    } catch(e) {
+       if (e instanceof TypeError) {
+        alert(e);
+      } else if (e instanceof RangeError) {
+        alert(e);
+      } else if (e instanceof EvalError) {
+        alert(e);
+      } else if (e instanceof ReferenceError) {
+        alert(e); // ReferenceError: doesnotexist is not defined
+      } else {
+        // statements to handle any unspecified exceptions
+        console.log(e); // pass exception object to error handler
+      }
     }
 </script>
 ```
