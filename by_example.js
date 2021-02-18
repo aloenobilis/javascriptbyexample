@@ -382,12 +382,19 @@ function Account(owner, name, branch, balance) {
 var myAccount = new Account('jack@rabbit.x', 'Savings', '99 Parke Ave', 22.22);
 myAccount.funcCredit(7.78);
 document.write('$', myAccount.balance, '<br/>'); // $30
+
 // iii
 Account.prototype.hasCredit = true;
 document.write('Has credit: ', myAccount.hasCredit, '<br/>'); // true
 Account.prototype.formattedBalance = function(symbol){
     document.write(symbol, this.balance.toFixed(2), '<br/>');
 };
+
 myAccount.formattedBalance('€'); // €30.00
 myAccount.formattedBalance('£'); // £30.00
 
+
+// +--Form Validation--+ (see readme, example contains html)
+// +--Exception Handling--+  (see readme, 〃)
+
+// end of program

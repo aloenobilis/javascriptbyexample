@@ -43,6 +43,7 @@ to, taken away from and tested over time as the ecosystem and language specifica
 33. [Object Orientated JavaScript](#OOJS)
 34. [Form Validation](#FormValidation)
 35. [Exception Handling](#ExceptionHandling)
+    - RegEx
 
 <a name="Introduction"></a>
 ### Introduction
@@ -871,67 +872,56 @@ iii. Shared prototypes <br/>
     };
     myAccount.formattedBalance('€'); // €30.00
     myAccount.formattedBalance('£'); // £30.00
-</script>    <script type="text/javascript">
-    // +--Object Orientated JavaScript--+
-    // i.  objects
-    // ii. generic objects
-    // iii. Shared prototypes
-        // - are basically static varibles that are available from the object type, they can be created on the fly.
-        // - static methods can also be added and overidden
+</script>    
+```
 
-    // i
-    var account = {
-        owner: "bunny@rabbit.x",
-        name: "Checking",
-        branch: "23 West St",
-        balance: 62.15,
-        funcDebit: function(debitAmount) {
-            this.balance -= debitAmount;
-        },
-        funcCredit: function(creditAmount) {
-            this.balance += creditAmount;
-        }
+<a name="FormValidation"></a>
+### Form Validation
+Note: This is just example validation
+```html
+<form name="myForm" onsubmit="return validateForm()" method="post">
+    Name: <input type="text" name="fname">
+    <input type="submit" value="Submit">
+</form>
+<script>
+    function validateForm() {
+      var x = document.forms["myForm"]["fname"].value;
+      if (x == "") {
+        alert("Name must be filled out");
+        return false;
+      }
     }
-
-    document.write('$', account.balance, '<br/>');  // $62.15
-    account.branch = "109 Dorothy Parker Ave";
-    document.write(account.branch, '<br/>'); // 109 Dorothy Parker Ave
-    account.hasCredit = true;
-    document.write('Has credit: ', account.hasCredit, '<br/>'); // true
-    delete account.hasCredit;
-
-    // ii
-    function Account(owner, name, branch, balance) {
-        this.owner = owner;
-        this.name = name;
-        this.branch = branch;
-        this.balance = balance;
-        this.funcDebit = function(debitAmount) {
-            this.balance -= debitAmount;
-        };
-        this.funcCredit = function(creditAmount) {
-            this.balance += creditAmount;
-        };
-    };
-
-    var myAccount = new Account('jack@rabbit.x', 'Savings', '99 Parke Ave', 22.22);
-    myAccount.funcCredit(7.78);
-    document.write('$', myAccount.balance, '<br/>'); // $30
-    // iii
-    Account.prototype.hasCredit = true;
-    document.write('Has credit: ', myAccount.hasCredit, '<br/>'); // true
-    Account.prototype.formattedBalance = function(symbol){
-        document.write(symbol, this.balance.toFixed(2), '<br/>');
-    };
-    myAccount.formattedBalance('€'); // €30.00
-    myAccount.formattedBalance('£'); // £30.00
 </script>
 ```
 
+
+<a name="ExceptionHandling"></a>
+### Exception Handling
+i. creating a RegEx object <br/>
+ii. validating string input
+
+```html
+Enter your name: 
+<input type="text" id="myInput" onblur="validateInput(this, document.getElementById('mySpan'));"> <br/>
+<span id="mySpan"></span>
+
+<script>
+    // i.
+    // const re = /^[A-Za-z\.\' \-]{1,15}\s?[A-Za-z\.\' \-]{1,15}\s?[A-Za-z\.\' \-]{1,15}/;
+    const reg = RegExp('^[A-Za-z\.\' \-]{1,15}\s?[A-Za-z\.\' \-]{1,15}\s?[A-Za-z\.\' \-]{1,15}');
+
+    function validateInput(input, output) {
+        if(reg.test(input.value) == false) {
+            output.innerHTML = 'Please enter a valid name';
+        }
+    }
+</script>
+```
 <br/>
 <br/>
 
 #### References: 
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide <br/>
 - https://www.w3schools.com/jsref/default.asp <br/>
 
 <br/>
