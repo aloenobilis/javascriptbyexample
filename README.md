@@ -44,7 +44,6 @@ to, taken away from and tested over time as the ecosystem and language specifica
 34. [Form Validation](#FormValidation)
 35. [Exception Handling](#ExceptionHandling)
 
-
 <a name="Introduction"></a>
 ### Introduction
 i. index.html <br/>
@@ -663,7 +662,278 @@ Mouse Y: <input type="text" id="mouseY"><br/>
 </script>
 ```
 
+<a name="GetElements"></a>
+### Get Elements by Tag Name
+```html
+<input type="text" id="i1" value="Input 1"> <br/>
+<input type="text" id="i2" value="Input 2"> <br/>
+<input type="text" id="i3" value="Input 3"> <br/>
+<button id="clearInputs">Clear</button>
+<script>
+    document.getElementById('clearInputs').onclick = function(e) {
+        var inputElements = document.getElementsByTagName('input');
+        for(var i=0; i<inputElements.length; i++) {
+            if(inputElements[i].type == 'text') {
+                inputElements[i].value = '';
+            }
+        }
+    };
+</script>
+```
+
+
+<a name="ElementStyling"></a>
+### Element Styling
+```html
+<div id="exDiv">
+    Now what are the possibilities of warp drive? Cmdr Riker's nervous system has been invaded by an unknown microorganism. The organisms fuse to the nerve, intertwining at the molecular level. That's why the transporter's biofilters couldn't extract it. The vertex waves show a K-complex corresponding to an REM state. The engineering section's critical. Destruction is imminent. Their robes contain ultritium, highly explosive, virtually undetectable by your transporter.
+</div>
+
+<button id="changeBgCol">Background Color</button>
+<button id="changeBrdrStyle">Border Style</button>
+<button id="changeBrdrWidth">Border Width</button>
+<button id="changeFontSize">Font Size</button>
+
+
+<script type="text/javascript">
+    document.getElementById('changeBgCol').onclick = function(e) {
+        document.getElementById('exDiv').style.backgroundColor = 'red';
+    }
+
+    document.getElementById('changeBrdrStyle').onclick = function(e) {
+        document.getElementById('exDiv').style.border = '2px solid blue';
+    }
+
+    document.getElementById('changeBrdrWidth').onclick = function(e) {
+        document.getElementById('exDiv').style.borderWidth = 'thick';
+    }
+
+    document.getElementById('changeFontSize').onclick = function(e) {
+        document.getElementById('exDiv').style.fontSize = 'xx-small';
+    }
+</script>
+```
+
+
+<a name="URLs"></a>
+### Manipulating URLs
+```html
+<button id="search">Go to Google</button> <br/>
+<button id="forward">Forward Page</button> <br/>
+<button id="back">Back Page</button> <br/>
+<button id="reload">Reload Page</button> <br/>
+
+<script type="text/javascript">
+    document.write("Current url : ", window.location.href, '<br/>');
+    document.write("Host name : ", window.location.hostname, '<br/>');
+    document.write("Path name : ", window.location.pathname, '<br/>');
+
+    document.getElementById('search').onclick = function(e) {
+        window.location.href = 'https://google.com';
+    }
+
+    document.getElementById('forward').onclick = function(e) {
+        history.forward();
+    }
+
+    document.getElementById('back').onclick = function(e) {
+        // history.back();
+        history.go(-1);
+    }
+
+    document.getElementById('reload').onclick = function(e) {
+        window.location.reload();
+    }
+</script>
+```
+
+<a name="ChildNodes"></a>
+### Editing Child Nodes
+```html
+<div id="exDiv">
+    <p>
+    <i>Unidentified</i> vessel travelling at sub <strong>warp speed</strong>, bearing 235.7. Fluctuations in energy readings from it, Captain. All transporters off. A strange set-up, but I'd say the graviton generator is depolarized. The dark colourings of the scrapes are the leavings of natural rubber, a type of non-conductive sole used by researchers experimenting with <small>electricity</small>. The molecules must have been partly de-phased by the anyon beam.
+    </p>
+</div>
+<script>
+    var pElements = document.getElementsByTagName('p');
+    pElements[0].style.backgroundColor = 'antiquewhite';
+
+    document.childNodes[2].style.backgroundColor = '#6b6b6b';
+
+    for(var i=0; i<document.childNodes.length; i++) {
+        console.log(document.childNodes[i]);
+    }
+
+    var exDiv = document.getElementById('exDiv');
+    exDiv.childNodes[1].style.color = 'blue';
+    exDiv.childNodes[1].childNodes[1].style.color = 'red';
+
+    document.write('Node type: ', exDiv.childNodes[1].childNodes[1].nodeType, '<br/>');  // 1
+    document.write('Node name: ', exDiv.childNodes[1].childNodes[1].nodeName, '<br/>');  // I
+</script>
+```
+
+<a name="SettingAttributes"></a>
+### Setting Attributes
+```html
+<img height="180px" alt="js logo" src="https://raw.githubusercontent.com/voodootikigod/logo.js/master/js.png" id="logo"> <br/>
+<script>
+    // +--Setting Attributes--+
+    var logo = document.getElementById('logo');
+    document.write('Logo alt value : ', logo.getAttribute('alt'), '<br/>');
+
+    var logoAttrList = logo.attributes;
+    for(var i=0; i<logoAttrList.length; i++) {
+        document.write('Attribute ', i, ': ', logoAttrList[i].nodeName, ' : ', logoAttrList[i].nodeValue, '<br/>');
+    }
+</script>
+```
+
+
+<a name="AddingElements"></a>
+### Adding Elements
+i. creating elements <br/>
+ii. inserting elements
+
+```html
+<div id="exDiv">
+    <small>The red planet awaits</small>
+</div>
+<script type="text/javascript">
+    // i
+    var heading = document.createElement('h1');
+    heading.setAttribute('id', 'title');
+    heading.innerHTML = 'WE ARE GOING TO MARS!';
+    
+    exDiv = document.getElementById('exDiv');
+    exDiv.appendChild(heading);
+
+
+    var altJ = document.createElement('span');
+    altJ.innerHTML = '∆';
+    // ii
+    exDiv.insertBefore(altJ, exDiv.childNodes[0]);
+</script>
+```
+<a name="OOJS"></a>
+### Object Orientated JavaScript
+i.  objects <br/>
+ii. generic objects <br/>
+iii. Shared prototypes <br/>
+    - are basically static varibles that are available from the object type, they can be created on the fly. <br/>
+    - static methods can also be added and overidden
+```html
+<script type="text/javascript">
+    // i
+    var account = {
+        owner: "bunny@rabbit.x",
+        name: "Checking",
+        branch: "23 West St",
+        balance: 62.15,
+        funcDebit: function(debitAmount) {
+            this.balance -= debitAmount;
+        },
+        funcCredit: function(creditAmount) {
+            this.balance += creditAmount;
+        }
+    }
+
+    document.write('$', account.balance, '<br/>');  // $62.15
+    account.branch = "109 Dorothy Parker Ave";
+    document.write(account.branch, '<br/>'); // 109 Dorothy Parker Ave
+    account.hasCredit = true;
+    document.write('Has credit: ', account.hasCredit, '<br/>'); // true
+    delete account.hasCredit;
+
+    // ii
+    function Account(owner, name, branch, balance) {
+        this.owner = owner;
+        this.name = name;
+        this.branch = branch;
+        this.balance = balance;
+        this.funcDebit = function(debitAmount) {
+            this.balance -= debitAmount;
+        };
+        this.funcCredit = function(creditAmount) {
+            this.balance += creditAmount;
+        };
+    };
+
+    var myAccount = new Account('jack@rabbit.x', 'Savings', '99 Parke Ave', 22.22);
+    myAccount.funcCredit(7.78);
+    document.write('$', myAccount.balance, '<br/>'); // $30
+    // iii
+    Account.prototype.hasCredit = true;
+    document.write('Has credit: ', myAccount.hasCredit, '<br/>'); // true
+    Account.prototype.formattedBalance = function(symbol){
+        document.write(symbol, this.balance.toFixed(2), '<br/>');
+    };
+    myAccount.formattedBalance('€'); // €30.00
+    myAccount.formattedBalance('£'); // £30.00
+</script>    <script type="text/javascript">
+    // +--Object Orientated JavaScript--+
+    // i.  objects
+    // ii. generic objects
+    // iii. Shared prototypes
+        // - are basically static varibles that are available from the object type, they can be created on the fly.
+        // - static methods can also be added and overidden
+
+    // i
+    var account = {
+        owner: "bunny@rabbit.x",
+        name: "Checking",
+        branch: "23 West St",
+        balance: 62.15,
+        funcDebit: function(debitAmount) {
+            this.balance -= debitAmount;
+        },
+        funcCredit: function(creditAmount) {
+            this.balance += creditAmount;
+        }
+    }
+
+    document.write('$', account.balance, '<br/>');  // $62.15
+    account.branch = "109 Dorothy Parker Ave";
+    document.write(account.branch, '<br/>'); // 109 Dorothy Parker Ave
+    account.hasCredit = true;
+    document.write('Has credit: ', account.hasCredit, '<br/>'); // true
+    delete account.hasCredit;
+
+    // ii
+    function Account(owner, name, branch, balance) {
+        this.owner = owner;
+        this.name = name;
+        this.branch = branch;
+        this.balance = balance;
+        this.funcDebit = function(debitAmount) {
+            this.balance -= debitAmount;
+        };
+        this.funcCredit = function(creditAmount) {
+            this.balance += creditAmount;
+        };
+    };
+
+    var myAccount = new Account('jack@rabbit.x', 'Savings', '99 Parke Ave', 22.22);
+    myAccount.funcCredit(7.78);
+    document.write('$', myAccount.balance, '<br/>'); // $30
+    // iii
+    Account.prototype.hasCredit = true;
+    document.write('Has credit: ', myAccount.hasCredit, '<br/>'); // true
+    Account.prototype.formattedBalance = function(symbol){
+        document.write(symbol, this.balance.toFixed(2), '<br/>');
+    };
+    myAccount.formattedBalance('€'); // €30.00
+    myAccount.formattedBalance('£'); // £30.00
+</script>
+```
+
 <br/>
+<br/>
+
+#### References: 
+- https://www.w3schools.com/jsref/default.asp <br/>
+
 <br/>
 <hr/>
 

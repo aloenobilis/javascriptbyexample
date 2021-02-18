@@ -329,4 +329,65 @@ document.write('Factorial of 4 = ', factorial(4), '<br/>');
 // +--Change Class--+ (see readme, 〃)
 // +--Change Input Element--+ (see readme, 〃)
 // +--Mouse X / Y Coordinates--+ (see readme, 〃)
+// +--Get Elements by Tag Name--+ (see readme, 〃)
+// +--Element Styling--+ (see readme, 〃)
+// +--Manipulating URLs--+ (see readme, 〃)
+// +--Editing Child Nodes--+ (see readme, 〃)
+// +--Setting Attributes--+ (see readme, 〃)
+// +--Adding Elements--+ (see readme, 〃)
+
+
+// +--Object Orientated JavaScript--+
+// i.  objects
+// ii. generic objects
+// iii. Shared prototypes
+    // - are basically static varibles that are available from the object type, they can be created on the fly.
+    // - static methods can also be added and overidden
+
+// i
+var account = {
+    owner: "bunny@rabbit.x",
+    name: "Checking",
+    branch: "23 West St",
+    balance: 62.15,
+    funcDebit: function(debitAmount) {
+        this.balance -= debitAmount;
+    },
+    funcCredit: function(creditAmount) {
+        this.balance += creditAmount;
+    }
+}
+
+document.write('$', account.balance, '<br/>');  // $62.15
+account.branch = "109 Dorothy Parker Ave";
+document.write(account.branch, '<br/>'); // 109 Dorothy Parker Ave
+account.hasCredit = true;
+document.write('Has credit: ', account.hasCredit, '<br/>'); // true
+delete account.hasCredit;
+
+// ii
+function Account(owner, name, branch, balance) {
+    this.owner = owner;
+    this.name = name;
+    this.branch = branch;
+    this.balance = balance;
+    this.funcDebit = function(debitAmount) {
+        this.balance -= debitAmount;
+    };
+    this.funcCredit = function(creditAmount) {
+        this.balance += creditAmount;
+    };
+};
+
+var myAccount = new Account('jack@rabbit.x', 'Savings', '99 Parke Ave', 22.22);
+myAccount.funcCredit(7.78);
+document.write('$', myAccount.balance, '<br/>'); // $30
+// iii
+Account.prototype.hasCredit = true;
+document.write('Has credit: ', myAccount.hasCredit, '<br/>'); // true
+Account.prototype.formattedBalance = function(symbol){
+    document.write(symbol, this.balance.toFixed(2), '<br/>');
+};
+myAccount.formattedBalance('€'); // €30.00
+myAccount.formattedBalance('£'); // £30.00
 
